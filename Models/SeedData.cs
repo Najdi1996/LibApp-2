@@ -22,6 +22,7 @@ namespace LibApp.Models
                 context.MembershipTypes.AddRange(
                     new MembershipType
                     {
+                        Name = "ddd" ,
                         Id = 1,
                         SignUpFee = 0,
                         DurationInMonths = 0,
@@ -29,6 +30,7 @@ namespace LibApp.Models
                     },
                     new MembershipType
                     {
+                        Name = "ddd",
                         Id = 2,
                         SignUpFee = 30,
                         DurationInMonths = 1,
@@ -36,6 +38,7 @@ namespace LibApp.Models
                     },
                     new MembershipType
                     {
+                        Name = "ddd",
                         Id = 3,
                         SignUpFee = 90,
                         DurationInMonths = 3,
@@ -43,6 +46,7 @@ namespace LibApp.Models
                     },
                     new MembershipType
                     {
+                        Name = "ddd",
                         Id = 4,
                         SignUpFee = 300,
                         DurationInMonths = 12,
