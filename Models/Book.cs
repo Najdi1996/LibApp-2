@@ -22,8 +22,9 @@ namespace LibApp.Models
 		[Display(Name = "Release Date")]
 		public DateTime ReleaseDate { get; set; }
 		[Required(ErrorMessage = "Number in Stock is requaired")]
-		[Display(Name = "Number in Stock")]
 		[Range(1, 20, ErrorMessage = "Number In Stock must be between 1 - 20")]
+		[Display(Name = "Number in Stock")]
+		
 		public int NumberInStock { get; set; }
 		public int NumberAvailable { get; set; }
 	}
