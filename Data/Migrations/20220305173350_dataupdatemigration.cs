@@ -2,7 +2,7 @@
 
 namespace LibApp.Data.Migrations
 {
-    public partial class postacie : Migration
+    public partial class dataupdatemigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

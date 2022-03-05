@@ -2,7 +2,7 @@
 
 namespace LibApp.Data.Migrations
 {
-    public partial class books : Migration
+    public partial class anotherUpdate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
