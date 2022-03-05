@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\48500\\Desktop\\Zaliczenie ASP.Net\\LibApp.csproj": {}
+    "C:\\Users\\48500\\Desktop\\Projekt Zaliczeniowy ASP.NET\\LibApp.csproj": {}
   },
   "projects": {
-    "C:\\Users\\48500\\Desktop\\Zaliczenie ASP.Net\\LibApp.csproj": {
+    "C:\\Users\\48500\\Desktop\\Projekt Zaliczeniowy ASP.NET\\LibApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\48500\\Desktop\\Zaliczenie ASP.Net\\LibApp.csproj",
+        "projectUniqueName": "C:\\Users\\48500\\Desktop\\Projekt Zaliczeniowy ASP.NET\\LibApp.csproj",
         "projectName": "LibApp",
-        "projectPath": "C:\\Users\\48500\\Desktop\\Zaliczenie ASP.Net\\LibApp.csproj",
+        "projectPath": "C:\\Users\\48500\\Desktop\\Projekt Zaliczeniowy ASP.NET\\LibApp.csproj",
         "packagesPath": "C:\\Users\\48500\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\48500\\Desktop\\Zaliczenie ASP.Net\\obj\\",
+        "outputPath": "C:\\Users\\48500\\Desktop\\Projekt Zaliczeniowy ASP.NET\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",

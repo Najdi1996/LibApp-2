@@ -1,6 +1,6 @@
 using LibApp.Data;
+using LibApp.Respositories;
 using LibApp.Interfaces;
-using LibApp.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -38,17 +38,9 @@ namespace LibApp
 
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
-            services.AddScoped<InterfaceBookRepository, BookRepository>();
-            AddRepositories(services);
             services.AddControllersWithViews();
-        }
 
-        private void AddRepositories(IServiceCollection services)
-        {
-            services.AddScoped<InterfaceBookRepository, BookRepository>();
-            services.AddScoped<InterfaceCustomerRepository, CustomerRepository>();
-            services.AddScoped<InterfaceGenreRepository, GenreRepository>();
-            services.AddScoped<InterfaceMembershipTypeRepository, MembershipTypeRepository>();
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
