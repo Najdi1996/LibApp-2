@@ -15,7 +15,7 @@ namespace LibApp.Models
 		[Required(ErrorMessage = "Please provide correct author name")]
 		public string AuthorName { get; set; }
 		[Required(ErrorMessage = "Genre must be specified")]
-		public Genre Genre { get; set; }
+		public Genre Genre { get; }
 		public byte GenreId { get; set; }
 		public DateTime DateAdded { get; set; }
 		[Required(ErrorMessage = "Realease Date is requaired")]

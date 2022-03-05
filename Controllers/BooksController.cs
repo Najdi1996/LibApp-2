@@ -7,22 +7,24 @@ using LibApp.Models;
 using LibApp.ViewModels;
 using LibApp.Data;
 using Microsoft.EntityFrameworkCore;
+using LibApp.Interfaces;
 
 namespace LibApp.Controllers
 {
     public class BooksController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        private readonly InterfaceGenreRepository _genreRepository;
+        private readonly InterfaceBookRepository _bookRepository;
 
-        public BooksController(ApplicationDbContext contex)
+        public BooksController(InterfaceGenreRepository genreRepository, InterfaceBookRepository bookRepository)
         {
-            _context = contex;
+            _genreRepository = genreRepository;
+            _bookRepository = bookRepository;
         }
 
         public IActionResult Index()
         {
-            var books = _context.Books
-                .Include(b => b.Genre)
+            var books = _bookRepository.GetBooks()
                 .ToList();
 
             return View(books);
@@ -30,21 +32,15 @@ namespace LibApp.Controllers
 
         public IActionResult Details(int id)
         {
-            var book = _context.Books
-                .Include(b => b.Genre)
+            var book = _bookRepository.GetBooks()
                 .SingleOrDefault(b => b.Id == id);
-
-            if (book == null)
-            {
-                return Content("Book not found");
-            }
 
             return View(book);
         }
 
         public IActionResult Edit(int id)
         {
-            var book = _context.Books.SingleOrDefault(b => b.Id == id);
+            var book = _bookRepository.GetBookById(id);
             if (book == null)
             {
                 return NotFound();
@@ -53,7 +49,7 @@ namespace LibApp.Controllers
             var viewModel = new BookFormViewModel
             {
                 Book = book,
-                Genres = _context.Genre.ToList()
+                Genres = _genreRepository.GetGenres()
             };
 
             return View("BookForm", viewModel);
@@ -61,35 +57,36 @@ namespace LibApp.Controllers
 
         public IActionResult New()
         {
-            var genres = _context.Genre.ToList();
             var viewModel = new BookFormViewModel
             {
-                Genres = genres
+                Genres = _genreRepository.GetGenres()
             };
 
             return View("BookForm", viewModel);
         }
 
+        [HttpPost]
         public IActionResult Save(Book book)
         {
             if (book.Id == 0)
             {
                 book.DateAdded = DateTime.Now;
-                _context.Books.Add(book);
+                _bookRepository.AddBook(book);
             }
             else
             {
-                var bookInDb = _context.Books.SingleOrDefault(b => b.Id == book.Id);
+                var bookInDb = _bookRepository.GetBookById(book.Id);
                 bookInDb.Name = book.Name;
                 bookInDb.AuthorName = book.AuthorName;
-                bookInDb.ReleaseDate = book.ReleaseDate;
                 bookInDb.GenreId = book.GenreId;
+                bookInDb.ReleaseDate = book.ReleaseDate;
+                bookInDb.DateAdded = book.DateAdded;
                 bookInDb.NumberInStock = book.NumberInStock;
             }
 
             try
             {
-                _context.SaveChanges();
+                _bookRepository.Save();
             }
             catch (DbUpdateException e)
             {
@@ -98,7 +95,5 @@ namespace LibApp.Controllers
 
             return RedirectToAction("Index", "Books");
         }
-
-
     }
 }
