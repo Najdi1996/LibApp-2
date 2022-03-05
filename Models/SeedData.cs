@@ -72,7 +72,7 @@ namespace LibApp.Models
                     {
                         Name = "Harry Potter i kamień filozoficzny",
                         AuthorName = "J.K.Rowling",
-                        GenreId = 1,
+                        GenreId = 6,
                         DateAdded = DateTime.Now.AddDays(-1),
                         ReleaseDate = DateTime.Now.AddDays(-3),
                         NumberInStock = 12,
@@ -82,7 +82,7 @@ namespace LibApp.Models
                     {
                         Name = "Pinokio",
                         AuthorName = "Carlo Collodi",
-                        GenreId = 2,
+                        GenreId = 6,
                         DateAdded = DateTime.Now.AddDays(-1),
                         ReleaseDate = DateTime.Now.AddDays(-3),
                         NumberInStock = 12,
@@ -92,7 +92,7 @@ namespace LibApp.Models
                     {
                         Name = "Chłopcy z placu broni",
                         AuthorName = "Ferenc Molnár",
-                        GenreId = 3,
+                        GenreId = 1,
                         DateAdded = DateTime.Now.AddDays(-1),
                         ReleaseDate = DateTime.Now.AddDays(-3),
                         NumberInStock = 12,
@@ -102,7 +102,7 @@ namespace LibApp.Models
                     {
                         Name = "Kamienie na szaniec",
                         AuthorName = "Aleksander Kamiński",
-                        GenreId = 4,
+                        GenreId = 1,
                         DateAdded = DateTime.Now.AddDays(-1),
                         ReleaseDate = DateTime.Now.AddDays(-3),
                         NumberInStock = 12,
@@ -125,28 +125,28 @@ namespace LibApp.Models
                            Name = "Steven Gerrard",
                            HasNewsletterSubscribed = true,
                            MembershipTypeId = 1,
-                           Birthdate = DateTime.Now.AddYears(-10),
+                           Birthdate = DateTime.Now.AddYears(-42),
                     },
                     new Customer
                     {
                            Name = "Frank Lampard",
                            HasNewsletterSubscribed = true,
                            MembershipTypeId = 2,
-                           Birthdate = DateTime.Now.AddYears(-10),
+                           Birthdate = DateTime.Now.AddYears(-34),
                     },
                     new Customer
                     {
                            Name = "Stefan Lipa",
                            HasNewsletterSubscribed = true,
                            MembershipTypeId = 3,
-                           Birthdate = DateTime.Now.AddYears(-10),
+                           Birthdate = DateTime.Now.AddYears(-26),
                     },
                     new Customer
                     {
                            Name = "Marcin Najman",
                            HasNewsletterSubscribed = true,
                            MembershipTypeId = 4,
-                           Birthdate = DateTime.Now.AddYears(-10),
+                           Birthdate = DateTime.Now.AddYears(-43),
                     }
                 };
 
@@ -165,21 +165,18 @@ namespace LibApp.Models
                 {
                     foreach (Customer cust in CustomersToAdd)
                     {
-                        RentalsToAdd.Add(
-                            new Rental
-                            {
-                                Book = book,
-                                Customer = cust,
-                                DateRented = DateTime.Now.AddDays(book.GenreId + cust.MembershipTypeId)
-                            }
-                        );
+                        var rental = new Rental
+                        {
+                            Book = book,
+                            Customer = cust,
+                            DateRented = DateTime.Now.AddDays(book.GenreId + cust.MembershipTypeId)
+                        };
+                        RentalsToAdd.Add(rental);
                     }
                 }
 
-                foreach (Rental rental in RentalsToAdd)
-                {
-                    context.Rentals.AddRange(rental);
-                }
+                context.Rentals.AddRange(RentalsToAdd.ToArray());
+
 
 
                 /* Update data in context */
